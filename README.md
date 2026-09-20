@@ -5,7 +5,8 @@ A private-by-device, ADHD-friendly routine and planning app built for GitHub Pag
 ## What it includes
 
 - Separate 06:00 Early Shift + Gym and Night Shift + Gym routines; only one can be selected per date
-- Full 90-minute gym blocks with scheduled push-ups, full STIFF and focused Eden GMC growth blocks
+- Full 90-minute gym blocks with scheduled push-ups and full STIFF sessions
+- No Eden GMC growth blocks on workdays
 - Non-negotiable Bella walks, food and water anchors
 - Actual work-finish adjustment that moves post-work essentials later without catch-up
 - Per-date checklists, Top 3 priorities, journal and progress
@@ -14,6 +15,8 @@ A private-by-device, ADHD-friendly routine and planning app built for GitHub Pag
 - Eden GMC weekend preparation and job checklists
 - Sunday Weekly Reset and three-goal framework
 - NOT NOW — LATER capture list
+- Bottom navigation for Today, Reset, Later, Journal and Extras
+- Extras menu for Eden GMC, Sunday Weekly Reset, ADHD Planning Rules and 12-week goals
 - Local browser storage, JSON backup/restore and offline support
 - Installable phone web app
 - Task-start browser alerts while the app is active

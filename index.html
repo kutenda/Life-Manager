@@ -42,7 +42,7 @@
             <strong>06:00 Early Shift + Gym</strong><span>03:35 wake · 90-minute gym after work</span>
           </button>
           <button class="mode-button night" data-mode="night" type="button">
-            <strong>Night Shift + Gym</strong><span>16:25 wake · 90-minute gym before work</span>
+            <strong>Night Shift + Gym</strong><span>16:55 wake · 90-minute gym before work</span>
           </button>
           <button class="mode-button open" data-mode="open" type="button">
             <strong>Open / Rest Day</strong><span>No timed routine</span>
@@ -101,11 +101,6 @@
       <div id="toolCards" class="tool-cards"></div>
     </section>
 
-    <section id="businessView" class="view" aria-labelledby="businessHeading">
-      <div class="page-heading"><p class="eyebrow">EDEN GMC</p><h1 id="businessHeading">Weekend jobs</h1><p>Preparation, job steps and a calm close-down.</p></div>
-      <div id="businessRoutines" class="tool-cards"></div>
-    </section>
-
     <section id="captureView" class="view" aria-labelledby="captureHeading">
       <div class="page-heading"><p class="eyebrow">CAPTURE IT, THEN RETURN</p><h1 id="captureHeading">Not Now — Later</h1><p>Ideas belong here so they do not steal the task you are doing.</p></div>
       <form id="captureForm" class="capture-form">
@@ -122,12 +117,33 @@
       <div id="captureList" class="capture-list"></div>
     </section>
 
-    <section id="reviewView" class="view" aria-labelledby="reviewHeading">
-      <div class="page-heading"><p class="eyebrow">REFLECT, DON’T JUDGE</p><h1 id="reviewHeading">Journal & Weekly Reset</h1></div>
+    <section id="journalView" class="view" aria-labelledby="journalHeading">
+      <div class="page-heading"><p class="eyebrow">REFLECT, DON’T JUDGE</p><h1 id="journalHeading">Journal</h1></div>
       <section class="journal-card">
         <div class="section-heading"><div><p class="eyebrow">FOR SELECTED DATE</p><h2>5-minute journal</h2></div><span class="save-state">Auto-saved</span></div>
         <div id="journalFields" class="journal-fields"></div>
       </section>
+    </section>
+
+    <section id="extrasView" class="view" aria-labelledby="extrasHeading">
+      <div class="page-heading"><p class="eyebrow">MORE TOOLS</p><h1 id="extrasHeading">Extras</h1><p>Open the section you need. Everything stays separate and easy to return to.</p></div>
+      <div class="extras-grid">
+        <button class="extra-card" data-open-view="edenView" type="button"><span class="extra-icon">▣</span><strong>Eden GMC</strong><small>Weekend job preparation and checklists</small><span class="extra-arrow">›</span></button>
+        <button class="extra-card" data-open-view="weeklyView" type="button"><span class="extra-icon">✓</span><strong>Sunday Weekly Reset</strong><small>60-minute calendar, health, business and life reset</small><span class="extra-arrow">›</span></button>
+        <button class="extra-card" data-open-view="rulesView" type="button"><span class="extra-icon">≡</span><strong>ADHD Planning Rules</strong><small>Your clear rules for resuming without catching up</small><span class="extra-arrow">›</span></button>
+        <button class="extra-card" data-open-view="goalsView" type="button"><span class="extra-icon">3</span><strong>Maximum Three Active Goals</strong><small>12-week goal templates and physical next actions</small><span class="extra-arrow">›</span></button>
+      </div>
+    </section>
+
+    <section id="edenView" class="view" aria-labelledby="edenHeading">
+      <button class="back-button" data-open-view="extrasView" type="button">‹ Extras</button>
+      <div class="page-heading"><p class="eyebrow">EDEN GMC</p><h1 id="edenHeading">Weekend jobs</h1><p>Preparation, job steps and a calm close-down.</p></div>
+      <div id="businessRoutines" class="tool-cards"></div>
+    </section>
+
+    <section id="weeklyView" class="view" aria-labelledby="weeklyHeading">
+      <button class="back-button" data-open-view="extrasView" type="button">‹ Extras</button>
+      <div class="page-heading"><p class="eyebrow">SUNDAY · 60 MINUTES</p><h1 id="weeklyHeading">Weekly Reset</h1></div>
       <section class="weekly-card">
         <div class="section-heading"><div><p class="eyebrow">SUNDAY · 60 MINUTES</p><h2>Weekly Reset</h2></div><button class="secondary-button" id="clearWeekly" type="button">Start new week</button></div>
         <div id="weeklyReset"></div>
@@ -135,8 +151,14 @@
     </section>
 
     <section id="rulesView" class="view" aria-labelledby="rulesHeading">
-      <div class="page-heading"><p class="eyebrow">KEEP IT SIMPLE</p><h1 id="rulesHeading">Rules & Goals</h1></div>
+      <button class="back-button" data-open-view="extrasView" type="button">‹ Extras</button>
+      <div class="page-heading"><p class="eyebrow">KEEP IT SIMPLE</p><h1 id="rulesHeading">ADHD Planning Rules</h1></div>
       <section class="rules-card"><h2>ADHD planning rules</h2><ol id="rulesList"></ol></section>
+    </section>
+
+    <section id="goalsView" class="view" aria-labelledby="goalsHeading">
+      <button class="back-button" data-open-view="extrasView" type="button">‹ Extras</button>
+      <div class="page-heading"><p class="eyebrow">MAXIMUM THREE ACTIVE GOALS</p><h1 id="goalsHeading">12-week goals</h1></div>
       <section class="goal-card"><div class="section-heading"><div><p class="eyebrow">MAXIMUM THREE ACTIVE GOALS</p><h2>12-week goal template</h2></div></div><div id="goalEditor"></div></section>
     </section>
   </main>
@@ -144,10 +166,9 @@
   <nav class="bottom-nav" aria-label="Main navigation">
     <button class="nav-button active" data-view="todayView" type="button"><span>●</span>Today</button>
     <button class="nav-button" data-view="toolsView" type="button"><span>↻</span>Reset</button>
-    <button class="nav-button" data-view="businessView" type="button"><span>▣</span>Eden</button>
     <button class="nav-button" data-view="captureView" type="button"><span>＋</span>Later</button>
-    <button class="nav-button" data-view="reviewView" type="button"><span>✓</span>Review</button>
-    <button class="nav-button" data-view="rulesView" type="button"><span>≡</span>Rules</button>
+    <button class="nav-button" data-view="journalView" type="button"><span>✎</span>Journal</button>
+    <button class="nav-button" data-view="extrasView" type="button"><span>•••</span>Extras</button>
   </nav>
 
   <dialog id="taskDialog" class="app-dialog">
