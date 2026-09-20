@@ -39,10 +39,10 @@
         </div>
         <div class="mode-grid">
           <button class="mode-button normal" data-mode="normal" type="button">
-            <strong>06:00 Early Shift + Gym</strong><span>03:35 wake · 90-minute gym after work</span>
+            <strong>06:00 Early Shift + Gym</strong><span>03:50 wake · 90-minute gym after work</span>
           </button>
           <button class="mode-button night" data-mode="night" type="button">
-            <strong>Night Shift + Gym</strong><span>17:25 wake · 90-minute gym before work</span>
+            <strong>Night Shift + Gym</strong><span>17:40 wake · 90-minute gym before work</span>
           </button>
           <button class="mode-button open" data-mode="open" type="button">
             <strong>Open / Rest Day</strong><span>No timed routine</span>
@@ -91,6 +91,7 @@
             <div class="progress-ring" id="progressRing" aria-label="Routine progress"><span id="progressText">0%</span></div>
           </div>
           <p class="calm-note">If you miss something, leave it. Continue with what fits now.</p>
+          <div id="optionalTasks" class="optional-tasks" hidden></div>
           <div id="taskList" class="task-list"></div>
         </section>
       </div>
@@ -194,6 +195,8 @@
       <button class="dialog-close" value="cancel" aria-label="Close">×</button>
       <p class="eyebrow">APP SETTINGS</p><h2>Keep the system yours</h2>
       <label class="setting-row"><span><strong>Minoxidil today</strong><small>Show it only when your separate treatment plan says it is appropriate.</small></span><input id="minoxidilToggle" type="checkbox" role="switch"></label>
+      <label class="setting-row"><span><strong>100 push-ups today</strong><small>Add an optional push-up checklist item for the selected date.</small></span><input id="pushupsToggle" type="checkbox" role="switch"></label>
+      <label class="setting-row"><span><strong>STIFF today</strong><small>Add an optional STIFF checklist item for the selected date.</small></span><input id="stiffToggle" type="checkbox" role="switch"></label>
       <label class="setting-row"><span><strong>Gentle vibration</strong><small>Vibrate on supported phones when a task is completed.</small></span><input id="vibrationToggle" type="checkbox" role="switch"></label>
       <div class="settings-actions">
         <button id="exportData" type="button" class="secondary-button">Download backup</button>

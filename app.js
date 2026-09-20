@@ -1,8 +1,7 @@
 const APP_KEY = 'kb-life-manager-v1';
 
 const normalTasks = [
-  ['03:35','03:40','WAKE',['Get straight out of bed','Lights on','Drink water','No scrolling']],
-  ['03:40','03:55','100 PUSH-UPS',[],'Scheduled on this gym day as requested.'],
+  ['03:50','03:55','WAKE',['Get straight out of bed','Lights on','Drink water','No scrolling']],
   ['03:55','04:05','MEDITATION',[]],
   ['04:05','04:35','BELLA MORNING WALK',['Toilet','Proper walk','Do not rush her'],'Bella’s care is non-negotiable.'],
   ['04:35','04:45','BELLA FOOD + WATER',['Give Bella first food','Check/refill fresh water']],
@@ -26,8 +25,7 @@ const normalTasks = [
 ];
 
 const nightTasks = [
-  ['17:25','17:30','WAKE + WATER',['Get out of bed','Lights on','Drink water','No scrolling']],
-  ['17:30','17:45','100 PUSH-UPS',[],'Scheduled on this gym day as requested.'],
+  ['17:40','17:45','WAKE + WATER',['Get out of bed','Lights on','Drink water','No scrolling']],
   ['17:45','17:55','MEDITATION',[]],
   ['17:55','18:25','BELLA EVENING WALK',['Toilet','Proper walk','Do not rush her'],'Bella’s care is non-negotiable.'],
   ['18:25','18:35','BELLA FOOD + WATER',['Give Bella second food','Check/refill fresh water']],
@@ -66,7 +64,7 @@ const weeklyGroups = {
   'LIFE ADMIN':['Universal Credit','Bills','Letters','Forms','Emails','Laundry','Room/home tasks']
 };
 
-const rules = ['Bella’s walks, food and fresh water are non-negotiable. Move them when work finishes late; never delete or rush them.','Keep the scheduled push-ups on gym workdays.','Keep STIFF available in Minimum Day and plan it during Weekly Reset, but do not force it into Early or Night Shift schedules.','Do not schedule Eden GMC growth blocks on workdays.','Gym sessions remain 90 minutes. If an unusually late early shift makes the gym incompatible with essential sleep, move the gym to another suitable day.','Do not catch up on missed optional tasks after a late finish.','Calendar = things happening at a specific time.','This app = what I am doing today.','Capture list = things I remember during the day.','Journal = thoughts and reflection.','Only three priorities per day.','Break vague projects into physical actions.','Use timers to make time visible.','Schedule free time instead of trying to eliminate it.','Do not redesign the system when I have one bad day.','Resume; do not restart.','Done is better than perfect.',"If overwhelmed, use RESET — DON'T THINK.",'If struggling badly, use MINIMUM DAY.'];
+const rules = ['Bella’s walks, food and fresh water are non-negotiable. Move them when work finishes late; never delete or rush them.','Push-ups are not fixed in workday schedules; add them only when appropriate using the Settings switch.','Keep STIFF available in Minimum Day and Weekly Reset, or add it for a selected date using the Settings switch.','Do not schedule Eden GMC growth blocks on workdays.','Gym sessions remain 90 minutes. If an unusually late early shift makes the gym incompatible with essential sleep, move the gym to another suitable day.','Do not catch up on missed optional tasks after a late finish.','Calendar = things happening at a specific time.','This app = what I am doing today.','Capture list = things I remember during the day.','Journal = thoughts and reflection.','Only three priorities per day.','Break vague projects into physical actions.','Use timers to make time visible.','Schedule free time instead of trying to eliminate it.','Do not redesign the system when I have one bad day.','Resume; do not restart.','Done is better than perfect.',"If overwhelmed, use RESET — DON'T THINK.",'If struggling badly, use MINIMUM DAY.'];
 const journalPrompts = ['What did I actually accomplish today?','What did I avoid?','What got in the way?','What did I learn?',"What is tomorrow's MUST?","What is tomorrow's first physical action?"];
 
 let state = loadState();
@@ -104,6 +102,8 @@ function init(){
   document.querySelector('#jumpNow').addEventListener('click',jumpNow);
   document.querySelector('#openSettings').addEventListener('click',openSettings);
   document.querySelector('#minoxidilToggle').addEventListener('change',e=>{dayState().minoxidil=e.target.checked;saveState();renderToday();});
+  document.querySelector('#pushupsToggle').addEventListener('change',e=>{dayState().pushups=e.target.checked;saveState();renderToday();});
+  document.querySelector('#stiffToggle').addEventListener('change',e=>{dayState().stiff=e.target.checked;saveState();renderToday();});
   document.querySelector('#actualFinish').addEventListener('change',e=>{dayState().actualFinish=e.target.value;saveState();renderToday();toast('Post-work essentials moved');});
   document.querySelector('#enableAlerts').addEventListener('click',enableAlerts);
   document.querySelector('#exportCalendar').addEventListener('click',exportCalendar);
@@ -145,7 +145,7 @@ function renderSleepWarning(d){
   const warning=document.querySelector('#sleepWarning'),expected=d.mode==='normal'?'18:00':'10:00',finish=d.actualFinish||expected;
   let late=toMinutes(finish)-toMinutes(expected);if(d.mode==='night'&&late<-8*60)late+=1440;
   warning.hidden=false;
-  const baseline='Safety check: the complete routine currently leaves about 5 hours 25 minutes between scheduled sleep and wake-up, before any late finish.';
+  const baseline='Safety check: the complete routine currently leaves about 5 hours 40 minutes between scheduled sleep and wake-up, before any late finish.';
   if(late<=0){warning.textContent=`${baseline} Protecting adequate sleep may require moving a workout or optional task to another day. Schedule STIFF separately through Weekly Reset rather than forcing it into this workday.`;return;}
   warning.textContent=d.mode==='normal'
     ? `${baseline} Work also finished ${late} minutes late. Bella and essential food stay protected; move the gym if it cannot fit without further reducing sleep.`
@@ -171,8 +171,17 @@ function renderToday(){
   document.querySelector('#taskList').innerHTML=tasks.length?tasks.map((t,i)=>taskHTML(t,i,d)).join(''):'<div class="task-item"><div></div><div class="task-copy"><button type="button">Open day</button><span>Use free time, appointments or a reset tool without creating an overdue list.</span></div></div>';
   document.querySelectorAll('[data-task-index]').forEach(el=>{el.addEventListener('click',()=>toggleTask(Number(el.dataset.taskIndex)));});
   document.querySelectorAll('[data-task-open]').forEach(el=>{el.addEventListener('click',()=>openTask(Number(el.dataset.taskOpen)));});
+  renderOptionalTasks(d);
   updateNow(tasks,d); updateProgress(tasks,d);
   scheduleNotifications(tasks,d);
+}
+function renderOptionalTasks(d){
+  const box=document.querySelector('#optionalTasks'),items=[];
+  if(d.pushups)items.push(['optional-pushups','100 PUSH-UPS','Optional today · enabled in Settings']);
+  if(d.stiff)items.push(['optional-stiff','STIFF','Optional today · complete the prescribed exercises properly']);
+  box.hidden=!items.length;
+  box.innerHTML=items.length?`<p class="optional-label">OPTIONAL TODAY</p>${items.map(([id,title,note])=>{const complete=d.tasks[id]==='complete';return `<article class="task-item ${complete?'complete':''}"><button class="task-check" data-optional-task="${id}" aria-label="${complete?'Uncheck':'Complete'} ${title}">${complete?'✓':''}</button><div class="task-copy"><button type="button" data-optional-task="${id}">${title}</button><span>${note}</span></div><span class="task-state">${complete?'DONE':'OPTIONAL'}</span></article>`;}).join('')}`:'';
+  box.querySelectorAll('[data-optional-task]').forEach(button=>button.addEventListener('click',()=>{const id=button.dataset.optionalTask;d.tasks[id]=d.tasks[id]==='complete'?'':'complete';saveState();if(d.tasks[id]==='complete'&&state.settings.vibration&&navigator.vibrate)navigator.vibrate(35);renderOptionalTasks(d);}));
 }
 function taskHTML(t,i,d){ if(t[2]==='MINOXIDIL'&&!d.minoxidil)return ''; const id=taskId(t,i), status=d.tasks[id]||'', current=isCurrentIndex(i); return `<article class="task-item ${status} ${current?'current':''}" id="task-${i}"><button class="task-check" data-task-index="${i}" aria-label="${status==='complete'?'Uncheck':'Complete'} ${esc(t[2])}">${status==='complete'?'✓':status==='skipped'?'—':''}</button><div class="task-copy"><button type="button" data-task-open="${i}">${esc(t[2])}</button><span>${timeLabel(t,d.mode,i)}${t[3].length?` · ${t[3].length} steps`:''}</span></div><span class="task-state">${status==='complete'?'DONE':status==='skipped'?'LEFT':current?'NOW':''}</span></article>`; }
 function timeLabel(t,mode,i){const tasks=getTasks(dayState()),suffix=i>=0&&virtualTime(tasks,i)>=1440?' next day':'';return `${t[0]}–${t[1]}${suffix}`;}
@@ -241,7 +250,7 @@ function exportCalendar(){
   const blob=new Blob([content],{type:'text/calendar;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`kb-${d.mode}-routine-${selectedDate}.ics`;a.click();URL.revokeObjectURL(a.href);toast('Calendar routine downloaded');
 }
 
-function openSettings(){document.querySelector('#minoxidilToggle').checked=!!dayState().minoxidil;document.querySelector('#vibrationToggle').checked=state.settings.vibration!==false;document.querySelector('#settingsDialog').showModal();}
+function openSettings(){const d=dayState();document.querySelector('#minoxidilToggle').checked=!!d.minoxidil;document.querySelector('#pushupsToggle').checked=!!d.pushups;document.querySelector('#stiffToggle').checked=!!d.stiff;document.querySelector('#vibrationToggle').checked=state.settings.vibration!==false;document.querySelector('#settingsDialog').showModal();}
 function clearSelectedDate(){if(!confirm(`Clear checks, priorities and journal for ${dateLabel(selectedDate)}?`))return;delete state.days[selectedDate];saveState();document.querySelector('#settingsDialog').close();renderAll();toast('Selected date cleared');}
 function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`kb-life-manager-backup-${localDate()}.json`;a.click();URL.revokeObjectURL(a.href);toast('Backup downloaded');}
 function importData(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const next=JSON.parse(reader.result);if(!next.days||!next.settings)throw new Error();if(confirm('Replace this device’s app data with the backup?')){state=next;saveState();renderAll();document.querySelector('#settingsDialog').close();toast('Backup restored');}}catch{alert('That file is not a valid KB Life Manager backup.');}};reader.readAsText(file);e.target.value='';}

@@ -75,6 +75,8 @@ h2 { line-height: 1.1; letter-spacing: -.03em; margin-bottom: .35rem; }
 .progress-ring { --progress: 0deg; flex: 0 0 auto; width: 58px; height: 58px; display: grid; place-items: center; border-radius: 50%; background: conic-gradient(var(--lime) var(--progress), var(--line) 0); position: relative; }
 .progress-ring::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; background: var(--surface); }.progress-ring span { position: relative; z-index: 1; font-size: .75rem; font-weight: 900; }
 .calm-note { margin: -0.4rem 0 1rem; font-size: .9rem; }
+.optional-tasks { display: grid; gap: .65rem; margin-bottom: .9rem; padding-bottom: .9rem; border-bottom: 1px solid var(--line); }
+.optional-label { color: var(--blue); font-size: .75rem; font-weight: 900; letter-spacing: .12em; margin: 0; }
 .task-list { display: grid; gap: .65rem; }
 .task-item { display: grid; grid-template-columns: 52px 1fr auto; align-items: center; gap: .85rem; padding: .85rem; border: 1px solid var(--line); border-radius: 17px; background: #0b1426; transition: opacity .15s, border-color .15s; scroll-margin-top: 1rem; }
 .task-item.current { border-color: var(--lime); box-shadow: 0 0 0 1px var(--lime); }.task-item.complete { opacity: .58; }.task-item.skipped { opacity: .44; }
