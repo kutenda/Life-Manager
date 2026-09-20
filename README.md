@@ -5,7 +5,7 @@ A private-by-device, ADHD-friendly routine and planning app built for GitHub Pag
 ## What it includes
 
 - Separate 06:00 Early Shift + Gym and Night Shift + Gym routines; only one can be selected per date
-- Full 90-minute gym blocks with no automatic push-ups or forced full STIFF session
+- Full 90-minute gym blocks with scheduled push-ups, full STIFF and focused Eden GMC growth blocks
 - Non-negotiable Bella walks, food and water anchors
 - Actual work-finish adjustment that moves post-work essentials later without catch-up
 - Per-date checklists, Top 3 priorities, journal and progress
@@ -16,6 +16,8 @@ A private-by-device, ADHD-friendly routine and planning app built for GitHub Pag
 - NOT NOW — LATER capture list
 - Local browser storage, JSON backup/restore and offline support
 - Installable phone web app
+- Task-start browser alerts while the app is active
+- Calendar export with start-time alerts for reliable phone notifications
 
 ## Publish with GitHub Pages
 
@@ -27,6 +29,8 @@ A private-by-device, ADHD-friendly routine and planning app built for GitHub Pag
 6. Open the GitHub Pages link GitHub provides.
 
 On iPhone, open that link in Safari, tap **Share**, then **Add to Home Screen**.
+
+For reliable alerts when the app is closed, choose the routine and date, tap **Add routine to calendar**, open the downloaded `.ics` file and add the events. Browser alerts can be enabled inside the app, but iPhone may suspend them when the app is closed.
 
 ## Privacy and data
 

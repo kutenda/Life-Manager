@@ -39,10 +39,10 @@
         </div>
         <div class="mode-grid">
           <button class="mode-button normal" data-mode="normal" type="button">
-            <strong>06:00 Early Shift + Gym</strong><span>03:50 wake · 90-minute gym after work</span>
+            <strong>06:00 Early Shift + Gym</strong><span>03:35 wake · 90-minute gym after work</span>
           </button>
           <button class="mode-button night" data-mode="night" type="button">
-            <strong>Night Shift + Gym</strong><span>18:00 wake · 90-minute gym before work</span>
+            <strong>Night Shift + Gym</strong><span>16:25 wake · 90-minute gym before work</span>
           </button>
           <button class="mode-button open" data-mode="open" type="button">
             <strong>Open / Rest Day</strong><span>No timed routine</span>
@@ -79,6 +79,10 @@
           </div>
           <label><span>Actual finish</span><input id="actualFinish" type="time"></label>
           <div id="sleepWarning" class="sleep-warning" hidden></div>
+          <div class="alert-actions">
+            <button id="enableAlerts" class="secondary-button" type="button">Enable task alerts</button>
+            <button id="exportCalendar" class="secondary-button" type="button">Add routine to calendar</button>
+          </div>
         </section>
 
         <section class="routine-section" aria-labelledby="routineHeading">
