@@ -6,6 +6,7 @@ A private-by-device, ADHD-friendly routine and planning app built for GitHub Pag
 
 - Separate 06:00 Early Shift + Gym and Night Shift + Gym routines; only one can be selected per date
 - Full 90-minute gym blocks with scheduled push-ups
+- STIFF remains available in Minimum Day, Weekly Reset and planning guidance, but is not timed inside workday routines
 - No Eden GMC growth blocks on workdays
 - Non-negotiable Bella walks, food and water anchors
 - Actual work-finish adjustment that moves post-work essentials later without catch-up
