@@ -39,10 +39,10 @@
         </div>
         <div class="mode-grid">
           <button class="mode-button normal" data-mode="normal" type="button">
-            <strong>6AM Normal Day</strong><span>06:00 start · 22:00 sleep</span>
+            <strong>06:00 Early Shift + Gym</strong><span>03:50 wake · 90-minute gym after work</span>
           </button>
           <button class="mode-button night" data-mode="night" type="button">
-            <strong>Night Shift Day</strong><span>17:30 start · sleep about 12:00</span>
+            <strong>Night Shift + Gym</strong><span>18:00 wake · 90-minute gym before work</span>
           </button>
           <button class="mode-button open" data-mode="open" type="button">
             <strong>Open / Rest Day</strong><span>No timed routine</span>
@@ -69,6 +69,16 @@
           <label><span class="priority-tag should">SHOULD</span><input id="priorityShould" maxlength="140" placeholder="One useful task"></label>
           <label><span class="priority-tag bonus">BONUS</span><input id="priorityBonus" maxlength="140" placeholder="Optional task"></label>
           <label class="first-action"><span>First physical action for MUST</span><input id="firstAction" maxlength="180" placeholder="What can I physically do first?"></label>
+        </section>
+
+        <section class="finish-card" id="finishCard">
+          <div>
+            <p class="eyebrow">LATE-FINISH ADJUSTMENT</p>
+            <h2>When did work actually finish?</h2>
+            <p id="finishHelp">Post-work essentials move with this time. Nothing optional becomes overdue.</p>
+          </div>
+          <label><span>Actual finish</span><input id="actualFinish" type="time"></label>
+          <div id="sleepWarning" class="sleep-warning" hidden></div>
         </section>
 
         <section class="routine-section" aria-labelledby="routineHeading">

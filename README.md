@@ -4,7 +4,10 @@ A private-by-device, ADHD-friendly routine and planning app built for GitHub Pag
 
 ## What it includes
 
-- Separate 6AM Normal Day and Night Shift routines; only one can be selected per date
+- Separate 06:00 Early Shift + Gym and Night Shift + Gym routines; only one can be selected per date
+- Full 90-minute gym blocks with no automatic push-ups or forced full STIFF session
+- Non-negotiable Bella walks, food and water anchors
+- Actual work-finish adjustment that moves post-work essentials later without catch-up
 - Per-date checklists, Top 3 priorities, journal and progress
 - Neutral “leave for today” state—no overdue backlog and no automatic rescheduling
 - RESET — DON'T THINK, MINIMUM DAY and JUST START reusable tools

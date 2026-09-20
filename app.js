@@ -1,49 +1,47 @@
 const APP_KEY = 'kb-life-manager-v1';
 
 const normalTasks = [
-  ['06:00','06:05','WAKE',['Get out of bed immediately','Turn lights/open curtains','Drink water','Do not open YouTube/social media']],
-  ['06:05','06:15','100 PUSH-UPS',[]],
-  ['06:15','06:30','SHOWER + HYGIENE',['Shower','Brush teeth','Get dressed','Make bed/open room up']],
-  ['06:30','06:40','MEDITATION',[], '10 minutes.'],
-  ['06:40','07:10','STIFF APP',['Open STIFF','Complete prescribed exercises','Do not rush exercises'],'30 minutes.'],
-  ['07:10','07:30','BREAKFAST + WATER',[]],
-  ['07:30','07:40','MINOXIDIL',[],'Only when appropriate according to your separate routine.'],
-  ['07:40','08:00',"TODAY'S TOP 3",['MUST: one essential task','SHOULD: one useful task','BONUS: optional task','Write the first physical action for MUST']],
-  ['08:00','09:00','FOCUS BLOCK 1',[],'Today’s MUST task. Phone away. Start with the first physical action.'],
-  ['09:00','09:15','BREAK + WALK',[]],
-  ['09:15','10:15','FOCUS BLOCK 2',[],'Continue MUST or move to SHOULD.'],
-  ['10:15','10:45','LIFE ADMIN',['Universal Credit','GP/mental-health admin','Emails','Bills','Appointments','Forms','Phone calls']],
-  ['10:45','11:15','OUTSIDE / WALK',[],'Leave the bedroom/house where possible.'],
-  ['11:15','12:15','EDEN GMC BUSINESS',['Check new enquiries','Reply to customers','Follow up outstanding quotes','Prepare/send quotes','Schedule accepted jobs','Confirm weekend customers','Check weather/access requirements','Check equipment/materials','Record income/expenses']],
-  ['12:15','13:00','LUNCH',[]],
-  ['13:00','15:00','FLEXIBLE BLOCK',['Appointments','Important errands','Work','Recovery/mental-health appointments','Business tasks','Practical tasks']],
-  ['15:00','15:30','RESET BREAK',['Eat/drink if needed','Move around','Do not disappear into YouTube']],
-  ['15:30','17:00','EDEN GMC / PRACTICAL BLOCK',[],'Business development, equipment, quotes, customer communication or practical jobs.'],
-  ['17:00','18:30','DINNER + FAMILY + DOWNTIME',[]],
-  ['18:30','18:45','15-MINUTE ROOM RESET',['Rubbish','Clothes','Dishes','Clear main surfaces','Prepare anything needed tomorrow'],'Stop after 15 minutes unless you genuinely want to continue.'],
-  ['18:45','20:30','FREE TIME',[],'YouTube, gaming and entertainment are allowed. End reminder: 20:30.'],
-  ['20:30','21:00','EVENING ROUTINE',['Prepare clothes/items needed tomorrow'],'Include minoxidil only when appropriate.'],
-  ['21:00','21:15','JOURNAL + TOMORROW',['What did I actually accomplish today?','What did I avoid?','What got in the way?','What did I learn?',"What is tomorrow's MUST?","What is tomorrow's first physical action?"]],
-  ['21:15','22:00','WIND DOWN',['Reduce stimulating screens','Prepare for sleep']],
-  ['22:00','22:01','SLEEP',[],'Protect sleep. Nothing else is scheduled.']
+  ['03:50','03:55','WAKE',['Get straight out of bed','Lights on','Drink water','No scrolling']],
+  ['03:55','04:05','MEDITATION',[]],
+  ['04:05','04:35','BELLA MORNING WALK',['Toilet','Proper walk','Do not rush her'],'Bella’s care is non-negotiable.'],
+  ['04:35','04:45','BELLA FOOD + WATER',['Give Bella first food','Check/refill fresh water']],
+  ['04:45','05:00','SHOWER + DRESS',['Shower','Hygiene','Get dressed']],
+  ['05:00','05:20','BREAKFAST + WATER',[]],
+  ['05:20','05:25','MINOXIDIL',[],'Only when appropriate under your separate treatment schedule.'],
+  ['05:25','05:30','FINAL WORK CHECK',['Keys','Wallet','Phone','Food','Water','Work equipment','Gym clothes/equipment']],
+  ['05:30','06:00','COMMUTE TO WORK',[]],
+  ['06:00','18:00','WORK',[],'Expected finish is 18:00 or later.'],
+  ['18:00','18:30','COMMUTE HOME',[]],
+  ['18:30','19:00','BELLA EVENING WALK',['Toilet','Proper walk','Do not rush her'],'Never rush or skip Bella’s care to make the gym.'],
+  ['19:00','19:10','BELLA FOOD + WATER',['Give Bella second food','Check/refill fresh water']],
+  ['19:10','19:30','PRE-GYM FOOD + WATER',[]],
+  ['19:30','19:45','GET READY / TRAVEL TO GYM',[]],
+  ['19:45','21:15','GYM — 90 MINUTES',[],'Keep the full 90 minutes. Extra push-ups are optional, especially after chest, shoulder or triceps training.'],
+  ['21:15','21:30','TRAVEL HOME',[]],
+  ['21:30','21:45','QUICK SHOWER + CHANGE',[]],
+  ['21:45','22:00','POST-GYM MEAL + WATER',[]],
+  ['22:00','22:10','PREPARE TOMORROW',['Work clothes','Food','Water','Keys/wallet','Work equipment','Alarm']],
+  ['22:10','22:11','SLEEP',[],'Protect sleep. Do not add Eden GMC growth, full STIFF, admin or optional productivity.']
 ];
 
 const nightTasks = [
-  ['17:30','17:35','WAKE',['Get out of bed','Lights on','Water','No scrolling']],
-  ['17:35','17:50','100 PUSH-UPS',[]],
-  ['17:50','18:05','SHOWER + HYGIENE',[]],
+  ['18:00','18:05','WAKE + WATER',['Get out of bed','Lights on','Drink water','No scrolling']],
   ['18:05','18:15','MEDITATION',[]],
-  ['18:15','18:45','STIFF APP',['Complete the prescribed exercises','Take enough time to do them properly']],
-  ['18:45','19:15','MAIN MEAL + WATER',[]],
-  ['19:15','19:25','MINOXIDIL',[],'Only when appropriate under your separate treatment schedule.'],
-  ['19:30','19:40',"TODAY'S TOP 3",['MUST: attend/complete work','SHOULD: one useful life/business task','BONUS: optional']],
-  ['19:40','20:10','EDEN GMC BUSINESS ADMIN',['Check enquiries','Reply to customers','Follow up quotes','Confirm weekend jobs','Update schedule']],
-  ['20:10','21:00','GET READY FOR WORK',[]],
-  ['21:00','22:00','LEAVE / COMMUTE / WORK PREP',[],'Adjust this block to your real commute time.'],
-  ['22:00','10:00','WORK — NIGHT SHIFT',[],'The finish may be 10:00 or later.'],
-  ['10:00','10:05','100 PUSH-UPS — OPTIONAL',[],'Only if physically well enough after the shift.'],
-  ['10:05','10:50','AFTER-SHIFT RESET',['Shower','Light meal','Hydrate','5-minute journal','Prepare bedroom for sleep','Reduce stimulation']],
-  ['12:00','12:01','SLEEP',[],'Target approximately 12:00. Protect this sleep period.']
+  ['18:15','18:45','BELLA EVENING WALK',['Toilet','Proper walk','Do not rush her'],'Bella’s care is non-negotiable.'],
+  ['18:45','18:55','BELLA FOOD + WATER',['Give Bella second food','Check/refill fresh water']],
+  ['18:55','19:15','PRE-GYM FOOD + WATER',[]],
+  ['19:15','19:30','GET READY / TRAVEL TO GYM',[]],
+  ['19:30','21:00','GYM — 90 MINUTES',[],'Keep the full 90 minutes. Do not shorten it to fit optional tasks.'],
+  ['21:00','21:30','SHOWER + POST-GYM FOOD',[]],
+  ['21:30','22:00','COMMUTE TO WORK',[]],
+  ['22:00','10:00','WORK — NIGHT SHIFT',[],'Expected finish is 10:00 or later.'],
+  ['10:00','10:30','COMMUTE HOME',[]],
+  ['10:30','11:00','BELLA MORNING WALK',['Toilet','Proper walk','Do not rush her'],'Move this with your actual arrival time. Never delete it.'],
+  ['11:00','11:10','BELLA FOOD + WATER',['Give Bella first food','Check/refill fresh water']],
+  ['11:10','11:25','SHOWER + HYGIENE',[]],
+  ['11:25','11:45','MEAL + WATER',[]],
+  ['11:45','12:00','PREPARE FOR SLEEP',['Wind down','Darken room','Put phone on sleep/do-not-disturb']],
+  ['12:00','12:01','SLEEP',[],'Protect sleep. Do not add Eden GMC, admin, YouTube, push-ups, full STIFF or optional productivity.']
 ];
 
 const routines = {
@@ -66,7 +64,7 @@ const weeklyGroups = {
   'LIFE ADMIN':['Universal Credit','Bills','Letters','Forms','Emails','Laundry','Room/home tasks']
 };
 
-const rules = ['Calendar = things happening at a specific time.','This app = what I am doing today.','Capture list = things I remember during the day.','Journal = thoughts and reflection.','Only three priorities per day.','Break vague projects into physical actions.','Use timers to make time visible.','Schedule free time instead of trying to eliminate it.','Do not redesign the system when I have one bad day.','Resume; do not restart.','Done is better than perfect.',"If overwhelmed, use RESET — DON'T THINK.",'If struggling badly, use MINIMUM DAY.'];
+const rules = ['Bella’s walks, food and fresh water are non-negotiable. Move them when work finishes late; never delete or rush them.','Sleep has priority over Eden GMC, admin, YouTube, optional push-ups and optional productivity.','Gym sessions remain 90 minutes. If an unusually late early shift makes the gym incompatible with essential sleep, move the gym to another suitable day.','Do not automatically add 100 push-ups on gym days.','Do not force a full STIFF session into a workday if it reduces sleep; complete only required rehabilitation exercises at an appropriate time.','Workdays are business maintenance only, and only when genuinely necessary.','Calendar = things happening at a specific time.','This app = what I am doing today.','Capture list = things I remember during the day.','Journal = thoughts and reflection.','Only three priorities per day.','Break vague projects into physical actions.','Use timers to make time visible.','Schedule free time instead of trying to eliminate it.','Do not redesign the system when I have one bad day.','Resume; do not restart.','Done is better than perfect.',"If overwhelmed, use RESET — DON'T THINK.",'If struggling badly, use MINIMUM DAY.'];
 const journalPrompts = ['What did I actually accomplish today?','What did I avoid?','What got in the way?','What did I learn?',"What is tomorrow's MUST?","What is tomorrow's first physical action?"];
 
 let state = loadState();
@@ -85,7 +83,7 @@ function saveState(){ localStorage.setItem(APP_KEY, JSON.stringify(state)); }
 function localDate(offset=0){ const d=new Date(); d.setDate(d.getDate()+offset); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
 function dayState(){ return state.days[selectedDate] ||= {mode:null,tasks:{},subtasks:{},priorities:{},journal:{},minoxidil:false}; }
 function esc(value=''){ const e=document.createElement('div'); e.textContent=value; return e.innerHTML; }
-function taskId(task,i){ return `${task[0]}-${task[2]}-${i}`.replace(/[^a-z0-9]+/gi,'-').toLowerCase(); }
+function taskId(task,i){ return `${task[2]}-${i}`.replace(/[^a-z0-9]+/gi,'-').toLowerCase(); }
 function toMinutes(time){ const [h,m]=time.split(':').map(Number); return h*60+m; }
 function dateLabel(date){ return new Intl.DateTimeFormat('en-GB',{weekday:'long',day:'numeric',month:'long'}).format(new Date(`${date}T12:00:00`)); }
 function toast(message){ const el=document.querySelector('#toast'); el.textContent=message; el.classList.add('show'); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('show'),1800); }
@@ -102,6 +100,7 @@ function init(){
   document.querySelector('#jumpNow').addEventListener('click',jumpNow);
   document.querySelector('#openSettings').addEventListener('click',openSettings);
   document.querySelector('#minoxidilToggle').addEventListener('change',e=>{dayState().minoxidil=e.target.checked;saveState();renderToday();});
+  document.querySelector('#actualFinish').addEventListener('change',e=>{dayState().actualFinish=e.target.value;saveState();renderToday();toast('Post-work essentials moved');});
   document.querySelector('#vibrationToggle').addEventListener('change',e=>{state.settings.vibration=e.target.checked;saveState();});
   document.querySelector('#captureForm').addEventListener('submit',captureThought);
   document.querySelectorAll('.filter-chip').forEach(b=>b.addEventListener('click',()=>{captureFilter=b.dataset.filter;document.querySelectorAll('.filter-chip').forEach(x=>x.classList.toggle('active',x===b));renderCaptures();}));
@@ -117,35 +116,68 @@ function init(){
   renderAll();
 }
 function stepDate(n){ const d=new Date(`${selectedDate}T12:00:00`); d.setDate(d.getDate()+n); selectedDate=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; document.querySelector('#activeDate').value=selectedDate; renderAll(); }
-function setMode(mode){ const d=dayState(); if(d.mode && d.mode!==mode && Object.values(d.tasks).some(v=>v==='complete') && !confirm('Switch routines for this date? Existing checks will be kept but hidden.')) return; d.mode=mode; saveState(); renderToday(); toast(mode==='normal'?'Normal Day selected':mode==='night'?'Night Shift selected':'Open day selected'); }
+function setMode(mode){ const d=dayState(); if(d.mode && d.mode!==mode && Object.values(d.tasks).some(v=>v==='complete') && !confirm('Switch routines for this date? Existing checks will be kept but hidden.')) return; d.mode=mode; d.actualFinish=mode==='normal'?'18:00':mode==='night'?'10:00':null; saveState(); renderToday(); toast(mode==='normal'?'Early Shift + Gym selected':mode==='night'?'Night Shift + Gym selected':'Open day selected'); }
 function showView(id){ document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id)); document.querySelectorAll('.nav-button').forEach(b=>b.classList.toggle('active',b.dataset.view===id)); window.scrollTo({top:0,behavior:'smooth'}); }
 function renderAll(){ renderToday(); renderTools(); renderBusiness(); renderCaptures(); renderJournal(); renderWeekly(); renderRules(); renderGoals(); }
+
+function shiftTime(time,delta){let value=(toMinutes(time)+delta)%(24*60);if(value<0)value+=24*60;return `${String(Math.floor(value/60)).padStart(2,'0')}:${String(value%60).padStart(2,'0')}`;}
+function getTasks(d){
+  if(d.mode==='open')return [];
+  const source=d.mode==='normal'?normalTasks:nightTasks;
+  const expected=d.mode==='normal'?'18:00':'10:00';
+  const finish=d.actualFinish||expected;
+  let delta=toMinutes(finish)-toMinutes(expected);if(d.mode==='night'&&delta<-8*60)delta+=1440;
+  const workIndex=9;
+  return source.map((task,i)=>{
+    const copy=[task[0],task[1],task[2],[...task[3]],task[4]];
+    if(i===workIndex)copy[1]=finish;
+    if(i>workIndex){copy[0]=shiftTime(copy[0],delta);copy[1]=shiftTime(copy[1],delta);}
+    return copy;
+  });
+}
+function renderSleepWarning(d){
+  const warning=document.querySelector('#sleepWarning'),expected=d.mode==='normal'?'18:00':'10:00',finish=d.actualFinish||expected;
+  let late=toMinutes(finish)-toMinutes(expected);if(d.mode==='night'&&late<-8*60)late+=1440;
+  if(late<=0){warning.hidden=true;return;}
+  warning.hidden=false;
+  warning.textContent=d.mode==='normal'
+    ? `Work finished ${late} minutes late. Bella and essential food stay protected. Keep the gym at 90 minutes only if it still allows essential sleep; otherwise move the gym to another suitable day.`
+    : `Work finished ${late} minutes late. Bella, food, hygiene and sleep have moved later. Do not catch up on optional tasks.`;
+}
 
 function renderToday(){
   const d=dayState(); document.querySelector('#todayHeading').textContent=dateLabel(selectedDate);
   document.querySelector('#modeChooser').hidden=!!d.mode; document.querySelector('#dayWorkspace').hidden=!d.mode;
   if(!d.mode) return;
-  const tasks=d.mode==='normal'?normalTasks:d.mode==='night'?nightTasks:[];
-  document.querySelector('#modeEyebrow').textContent=d.mode==='normal'?'6AM NORMAL DAY':d.mode==='night'?'22:00–10:00 NIGHT SHIFT':'OPEN / REST DAY';
-  document.querySelector('#routineHeading').textContent=d.mode==='normal'?'Normal Day':d.mode==='night'?'Night Shift Day':'No timed routine';
+  const tasks=getTasks(d);
+  document.querySelector('#modeEyebrow').textContent=d.mode==='normal'?'06:00 EARLY SHIFT · GYM':d.mode==='night'?'22:00–10:00+ NIGHT SHIFT · GYM':'OPEN / REST DAY';
+  document.querySelector('#routineHeading').textContent=d.mode==='normal'?'Early Shift + 90-Min Gym':d.mode==='night'?'Night Shift + 90-Min Gym':'No timed routine';
   const p=d.priorities||{}; document.querySelector('#priorityMust').value=p.must||'';document.querySelector('#priorityShould').value=p.should||'';document.querySelector('#priorityBonus').value=p.bonus||'';document.querySelector('#firstAction').value=p.first||'';
-  document.querySelector('#priorityCard').hidden=d.mode==='open';
+  document.querySelector('#priorityCard').hidden=true;
+  const finishCard=document.querySelector('#finishCard');finishCard.hidden=d.mode==='open';
+  if(d.mode!=='open'){
+    const expected=d.mode==='normal'?'18:00':'10:00';
+    document.querySelector('#actualFinish').value=d.actualFinish||expected;
+    document.querySelector('#finishHelp').textContent=d.mode==='normal'?'Commute, Bella’s evening care, essential food and the after-work plan move from this time.':'Commute, Bella’s morning care, food, hygiene and sleep move from this time.';
+    renderSleepWarning(d);
+  }
   document.querySelector('#taskList').innerHTML=tasks.length?tasks.map((t,i)=>taskHTML(t,i,d)).join(''):'<div class="task-item"><div></div><div class="task-copy"><button type="button">Open day</button><span>Use free time, appointments or a reset tool without creating an overdue list.</span></div></div>';
   document.querySelectorAll('[data-task-index]').forEach(el=>{el.addEventListener('click',()=>toggleTask(Number(el.dataset.taskIndex)));});
   document.querySelectorAll('[data-task-open]').forEach(el=>{el.addEventListener('click',()=>openTask(Number(el.dataset.taskOpen)));});
   updateNow(tasks,d); updateProgress(tasks,d);
 }
-function taskHTML(t,i,d){ if(t[2]==='MINOXIDIL'&&!d.minoxidil)return ''; const id=taskId(t,i), status=d.tasks[id]||'', current=isCurrent(t,d.mode); return `<article class="task-item ${status} ${current?'current':''}" id="task-${i}"><button class="task-check" data-task-index="${i}" aria-label="${status==='complete'?'Uncheck':'Complete'} ${esc(t[2])}">${status==='complete'?'✓':status==='skipped'?'—':''}</button><div class="task-copy"><button type="button" data-task-open="${i}">${esc(t[2])}</button><span>${timeLabel(t,d.mode)}${t[3].length?` · ${t[3].length} steps`:''}</span></div><span class="task-state">${status==='complete'?'DONE':status==='skipped'?'LEFT':current?'NOW':''}</span></article>`; }
-function timeLabel(t,mode){ if(mode==='night' && toMinutes(t[0])<13*60 && t[0]!=='12:00') return `${t[0]} next day`; if(mode==='night'&&t[0]==='12:00') return '12:00 next day'; return `${t[0]}–${t[1]}`; }
-function virtualNow(mode){ const n=new Date(), mins=n.getHours()*60+n.getMinutes(); return mode==='night'&&mins<13*60?mins+1440:mins; }
-function virtualTime(time,mode,index){ let m=toMinutes(time); if(mode==='night' && index>=12) m+=1440; return m; }
-function isCurrent(t,mode){ if(selectedDate!==localDate() && !(mode==='night'&&selectedDate===localDate(-1))) return false; const tasks=mode==='normal'?normalTasks:nightTasks; const i=tasks.indexOf(t), start=virtualTime(t[0],mode,i); let end=virtualTime(t[1],mode,i); if(end<=start)end+=1440; return virtualNow(mode)>=start&&virtualNow(mode)<end; }
-function findCurrent(tasks,mode,d){ const eligible=(t)=>t[2]!=='MINOXIDIL'||d.minoxidil; let idx=tasks.findIndex(t=>eligible(t)&&isCurrent(t,mode)); if(idx>=0)return idx; const now=virtualNow(mode); idx=tasks.findIndex((t,i)=>eligible(t)&&virtualTime(t[0],mode,i)>now); if(idx>=0)return idx; for(let i=tasks.length-1;i>=0;i--)if(eligible(tasks[i]))return i; return 0; }
-function updateNow(tasks,d){ const title=document.querySelector('#nowTitle'),meta=document.querySelector('#nowMeta'),button=document.querySelector('#jumpNow'); if(!tasks.length){title.textContent='Use the day you have';meta.textContent='Open a reset tool only if it helps.';button.hidden=true;return;} button.hidden=false; const i=findCurrent(tasks,d.mode,d),t=tasks[i]; title.textContent=isCurrent(t,d.mode)?t[2]:`Next: ${t[2]}`;meta.textContent=isCurrent(t,d.mode)?`${timeLabel(t,d.mode)} · Continue from here.`:`${timeLabel(t,d.mode)} · No need to catch up.`;button.dataset.index=i; }
+function taskHTML(t,i,d){ if(t[2]==='MINOXIDIL'&&!d.minoxidil)return ''; const id=taskId(t,i), status=d.tasks[id]||'', current=isCurrentIndex(i); return `<article class="task-item ${status} ${current?'current':''}" id="task-${i}"><button class="task-check" data-task-index="${i}" aria-label="${status==='complete'?'Uncheck':'Complete'} ${esc(t[2])}">${status==='complete'?'✓':status==='skipped'?'—':''}</button><div class="task-copy"><button type="button" data-task-open="${i}">${esc(t[2])}</button><span>${timeLabel(t,d.mode,i)}${t[3].length?` · ${t[3].length} steps`:''}</span></div><span class="task-state">${status==='complete'?'DONE':status==='skipped'?'LEFT':current?'NOW':''}</span></article>`; }
+function timeLabel(t,mode,i){const tasks=getTasks(dayState()),suffix=i>=0&&virtualTime(tasks,i)>=1440?' next day':'';return `${t[0]}–${t[1]}${suffix}`;}
+function virtualNow(){const n=new Date(),mins=n.getHours()*60+n.getMinutes();return selectedDate===localDate(-1)?mins+1440:mins;}
+function virtualTime(tasks,index){let day=0,last=toMinutes(tasks[0][0]);for(let i=1;i<=index;i++){const current=toMinutes(tasks[i][0]);if(current<last)day+=1440;last=current;}return toMinutes(tasks[index][0])+day;}
+function virtualEnd(tasks,index){const start=virtualTime(tasks,index);let end=toMinutes(tasks[index][1])+Math.floor(start/1440)*1440;if(end<=start)end+=1440;return end;}
+function isCurrentIndex(i){if(selectedDate!==localDate()&&selectedDate!==localDate(-1))return false;const tasks=getTasks(dayState());return i>=0&&i<tasks.length&&virtualNow()>=virtualTime(tasks,i)&&virtualNow()<virtualEnd(tasks,i);}
+function findCurrent(tasks,mode,d){const eligible=t=>t[2]!=='MINOXIDIL'||d.minoxidil;const now=virtualNow();let idx=tasks.findIndex((t,i)=>eligible(t)&&now>=virtualTime(tasks,i)&&now<virtualEnd(tasks,i));if(idx>=0)return idx;idx=tasks.findIndex((t,i)=>eligible(t)&&virtualTime(tasks,i)>now);if(idx>=0)return idx;for(let i=tasks.length-1;i>=0;i--)if(eligible(tasks[i]))return i;return 0;}
+function updateNow(tasks,d){ const title=document.querySelector('#nowTitle'),meta=document.querySelector('#nowMeta'),button=document.querySelector('#jumpNow'); if(!tasks.length){title.textContent='Use the day you have';meta.textContent='Open a reset tool only if it helps.';button.hidden=true;return;} button.hidden=false; const i=findCurrent(tasks,d.mode,d),t=tasks[i],current=isCurrentIndex(i); title.textContent=current?t[2]:`Next: ${t[2]}`;meta.textContent=current?`${timeLabel(t,d.mode,i)} · Continue from here.`:`${timeLabel(t,d.mode,i)} · No need to catch up.`;button.dataset.index=i; }
 function updateProgress(tasks,d){ const relevant=tasks.filter((t,i)=>d.minoxidil||t[2]!=='MINOXIDIL'); const done=relevant.filter((t,i)=>d.tasks[taskId(t,tasks.indexOf(t))]==='complete').length; const p=relevant.length?Math.round(done/relevant.length*100):0; document.querySelector('#progressText').textContent=`${p}%`;document.querySelector('#progressRing').style.setProperty('--progress',`${p*3.6}deg`); }
 function jumpNow(){ const i=Number(document.querySelector('#jumpNow').dataset.index); document.querySelector(`#task-${i}`)?.scrollIntoView({behavior:'smooth',block:'center'}); }
-function toggleTask(i){ const d=dayState(),tasks=d.mode==='normal'?normalTasks:nightTasks,t=tasks[i],id=taskId(t,i);d.tasks[id]=d.tasks[id]==='complete'?'': 'complete';saveState(); if(d.tasks[id]==='complete'&&state.settings.vibration&&navigator.vibrate)navigator.vibrate(35);renderToday(); }
-function openTask(i){ const d=dayState(),tasks=d.mode==='normal'?normalTasks:nightTasks,t=tasks[i],id=taskId(t,i); activeTask={type:'day',i,id,task:t}; fillDialog(t,t[3],t[4],durationMinutes(t)); document.querySelector('#dialogSkip').textContent='Leave for today';document.querySelector('#dialogComplete').textContent=d.tasks[id]==='complete'?'Mark incomplete':'Mark complete';document.querySelector('#taskDialog').showModal(); }
+function toggleTask(i){ const d=dayState(),tasks=getTasks(d),t=tasks[i],id=taskId(t,i);d.tasks[id]=d.tasks[id]==='complete'?'': 'complete';saveState(); if(d.tasks[id]==='complete'&&state.settings.vibration&&navigator.vibrate)navigator.vibrate(35);renderToday(); }
+function openTask(i){ const d=dayState(),tasks=getTasks(d),t=tasks[i],id=taskId(t,i); activeTask={type:'day',i,id,task:t}; fillDialog(t,t[3],t[4],durationMinutes(t)); document.querySelector('#dialogSkip').textContent='Leave for today';document.querySelector('#dialogComplete').textContent=d.tasks[id]==='complete'?'Mark incomplete':'Mark complete';document.querySelector('#taskDialog').showModal(); }
 function durationMinutes(t){ let a=toMinutes(t[0]),b=toMinutes(t[1]);if(b<a)b+=1440;return Math.max(1,b-a); }
 function fillDialog(t,items,description,duration){ document.querySelector('#dialogTime').textContent=t[0]?`${t[0]} · ${duration} MINUTES`:`${duration||''}${duration?' MINUTES':''}`;document.querySelector('#dialogTitle').textContent=t[2]||t.title;document.querySelector('#dialogDescription').textContent=description||'';const d=dayState();document.querySelector('#dialogSubtasks').innerHTML=items.map((s,j)=>`<label><input type="checkbox" data-sub="${j}" ${activeTask?.type==='day'&&d.subtasks[`${activeTask.id}-${j}`]?'checked':''}><span>${esc(s)}</span></label>`).join('');document.querySelectorAll('[data-sub]').forEach(c=>c.addEventListener('change',e=>{if(activeTask?.type==='day'){d.subtasks[`${activeTask.id}-${e.target.dataset.sub}`]=e.target.checked;saveState();}}));document.querySelector('#timerBox').hidden=!duration;timerInitial=Math.min(duration||5,60)*60;timerSeconds=timerInitial;document.querySelector('#timerStart').textContent='Start timer';renderTimer(); }
 function finishDialog(status){ if(!activeTask)return; if(activeTask.type==='day'){const d=dayState();d.tasks[activeTask.id]=d.tasks[activeTask.id]===status?'':status;}else{state.reusable[activeTask.key] ||= {};state.reusable[activeTask.key].items ||= {}; if(status==='complete') activeTask.routine.items.forEach((_,i)=>state.reusable[activeTask.key].items[i]=true); }saveState();document.querySelector('#taskDialog').close();renderAll();toast(status==='complete'?'Marked complete':'Left without backlog'); }

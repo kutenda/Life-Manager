@@ -42,7 +42,7 @@ h2 { line-height: 1.1; letter-spacing: -.03em; margin-bottom: .35rem; }
 .date-control { display: grid; text-align: center; gap: .15rem; }
 .date-control span { color: var(--muted); font-size: .8rem; font-weight: 700; }
 .date-control input { appearance: none; color-scheme: dark; background: transparent; border: 0; color: var(--text); font-weight: 850; text-align: center; font-size: 1.05rem; min-height: 40px; }
-.mode-card, .priority-card, .routine-section, .journal-card, .weekly-card, .rules-card, .goal-card { background: rgba(16,25,45,.92); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.1rem, 4vw, 1.8rem); box-shadow: var(--shadow); }
+.mode-card, .priority-card, .finish-card, .routine-section, .journal-card, .weekly-card, .rules-card, .goal-card { background: rgba(16,25,45,.92); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.1rem, 4vw, 1.8rem); box-shadow: var(--shadow); }
 .mode-card { min-height: 65vh; display: grid; align-content: center; }
 .mode-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin-top: 1.2rem; }
 .mode-button { text-align: left; min-height: 128px; border-radius: 18px; border: 1px solid var(--line); padding: 1rem; color: var(--text); background: var(--surface-2); transition: transform .15s, border-color .15s; }
@@ -59,7 +59,12 @@ h2 { line-height: 1.1; letter-spacing: -.03em; margin-bottom: .35rem; }
 .primary-button { background: var(--blue); color: #071125; }.now-card .primary-button { background: #102000; color: var(--lime); white-space: nowrap; }
 .secondary-button { background: var(--surface-2); color: var(--text); border-color: var(--line); }
 .danger-button { background: transparent; color: var(--danger); border-color: #7b3942; }
-.priority-card, .routine-section, .journal-card, .weekly-card, .rules-card, .goal-card { margin-bottom: 1rem; }
+.priority-card, .finish-card, .routine-section, .journal-card, .weekly-card, .rules-card, .goal-card { margin-bottom: 1rem; }
+.finish-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; }
+.finish-card p { color: var(--muted); margin-bottom: 0; }
+.finish-card label { display: grid; gap: .35rem; color: var(--muted); font-size: .8rem; font-weight: 800; }
+.finish-card input { color-scheme: dark; min-height: 48px; border: 1px solid var(--line); color: var(--text); background: #0b1426; border-radius: 13px; padding: .65rem; font-weight: 850; }
+.sleep-warning { grid-column: 1 / -1; background: rgba(255,202,104,.12); border: 1px solid #80642f; color: #ffe1a5; padding: .8rem; border-radius: 13px; font-weight: 700; }
 .section-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; margin-bottom: 1rem; }
 .save-state { color: var(--muted); font-size: .75rem; white-space: nowrap; }
 .priority-card label { display: grid; grid-template-columns: 76px 1fr; align-items: center; gap: .75rem; margin: .6rem 0; }
@@ -94,6 +99,7 @@ h2 { line-height: 1.1; letter-spacing: -.03em; margin-bottom: .35rem; }
   .mode-button { min-height: 92px; }
   .now-card { align-items: flex-start; flex-direction: column; }.now-card .primary-button { width: 100%; }
   .weekly-goal { grid-template-columns: 1fr; }
+  .finish-card { grid-template-columns: 1fr; }.finish-card label { width: 100%; }.finish-card input { width: 100%; }.sleep-warning { grid-column: auto; }
   .bottom-nav { border-radius: 18px; }.nav-button { min-height: 54px; font-size: .65rem; }.nav-button span { font-size: 1rem; }
 }
 @media (max-width: 430px) {
