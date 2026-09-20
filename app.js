@@ -15,21 +15,19 @@ const normalTasks = [
   ['18:00','18:30','COMMUTE HOME',[]],
   ['18:30','19:00','BELLA EVENING WALK',['Toilet','Proper walk','Do not rush her'],'Never rush or skip Bella’s care to make the gym.'],
   ['19:00','19:10','BELLA FOOD + WATER',['Give Bella second food','Check/refill fresh water']],
-  ['19:10','19:40','FULL STIFF SESSION',['Open STIFF','Complete the full prescribed session','Do not rush exercises']],
-  ['19:40','20:00','PRE-GYM FOOD + WATER',[]],
-  ['20:00','20:15','GET READY / TRAVEL TO GYM',[]],
-  ['20:15','21:45','GYM — 90 MINUTES',[],'Keep the full 90 minutes.'],
-  ['21:45','22:00','TRAVEL HOME',[]],
-  ['22:00','22:15','QUICK SHOWER + CHANGE',[]],
-  ['22:15','22:30','POST-GYM MEAL + WATER',[]],
-  ['22:30','22:40','PREPARE TOMORROW',['Work clothes','Food','Water','Keys/wallet','Work equipment','Alarm']],
-  ['22:40','22:41','SLEEP',[],'Go directly to sleep. Do not add catch-up tasks.']
+  ['19:10','19:30','PRE-GYM FOOD + WATER',[]],
+  ['19:30','19:45','GET READY / TRAVEL TO GYM',[]],
+  ['19:45','21:15','GYM — 90 MINUTES',[],'Keep the full 90 minutes.'],
+  ['21:15','21:30','TRAVEL HOME',[]],
+  ['21:30','21:45','QUICK SHOWER + CHANGE',[]],
+  ['21:45','22:00','POST-GYM MEAL + WATER',[]],
+  ['22:00','22:10','PREPARE TOMORROW',['Work clothes','Food','Water','Keys/wallet','Work equipment','Alarm']],
+  ['22:10','22:11','SLEEP',[],'Go directly to sleep. Do not add catch-up tasks.']
 ];
 
 const nightTasks = [
-  ['16:55','17:00','WAKE + WATER',['Get out of bed','Lights on','Drink water','No scrolling']],
-  ['17:00','17:15','100 PUSH-UPS',[],'Scheduled on this gym day as requested.'],
-  ['17:15','17:45','FULL STIFF SESSION',['Open STIFF','Complete the full prescribed session','Do not rush exercises']],
+  ['17:25','17:30','WAKE + WATER',['Get out of bed','Lights on','Drink water','No scrolling']],
+  ['17:30','17:45','100 PUSH-UPS',[],'Scheduled on this gym day as requested.'],
   ['17:45','17:55','MEDITATION',[]],
   ['17:55','18:25','BELLA EVENING WALK',['Toilet','Proper walk','Do not rush her'],'Bella’s care is non-negotiable.'],
   ['18:25','18:35','BELLA FOOD + WATER',['Give Bella second food','Check/refill fresh water']],
@@ -45,12 +43,12 @@ const nightTasks = [
   ['11:10','11:25','SHOWER + HYGIENE',[]],
   ['11:25','11:45','MEAL + WATER',[]],
   ['11:45','12:00','PREPARE FOR SLEEP',['Wind down','Darken room','Put phone on sleep/do-not-disturb']],
-  ['12:00','12:01','SLEEP',[],'Protect sleep. Do not add Eden GMC, admin, YouTube, push-ups, full STIFF or optional productivity.']
+  ['12:00','12:01','SLEEP',[],'Protect sleep. Do not add Eden GMC, admin, YouTube, push-ups or optional productivity.']
 ];
 
 const routines = {
   reset: { title:"RESET — DON'T THINK", duration:30, featured:true, note:'DO NOT CATCH UP. DO NOT WAIT FOR TOMORROW. REJOIN THE DAY FROM WHERE I AM NOW.', items:['Stand up','Turn the lights on/open curtains','Drink water','Wash face and brush teeth','Leave bedroom for at least 5 minutes','Five-minute room reset','Open this app','Look at what should be happening NOW','Ignore missed tasks','Choose ONE useful task','Identify the smallest physical action','Work on it for five minutes'] },
-  minimum: { title:'MINIMUM DAY', note:'The goal is not productivity. The goal is preventing a difficult day from becoming a zero day.', items:['Get out of bed','Lights/curtains open','Drink water','Brush teeth','Shower/wash','Put clean clothes on','Eat a proper meal','STIFF minimum session','Go outside for 10 minutes where possible','Complete ONE important task','Spend some time outside my bedroom','Speak to or interact with another person where possible','Prepare for sleep'] },
+  minimum: { title:'MINIMUM DAY', note:'The goal is not productivity. The goal is preventing a difficult day from becoming a zero day.', items:['Get out of bed','Lights/curtains open','Drink water','Brush teeth','Shower/wash','Put clean clothes on','Eat a proper meal','Go outside for 10 minutes where possible','Complete ONE important task','Spend some time outside my bedroom','Speak to or interact with another person where possible','Prepare for sleep'] },
   start: { title:'JUST START', duration:10, note:'ACTION BEFORE MOTIVATION.', items:['What am I avoiding?','What is the actual outcome?','What is the next PHYSICAL action?','Make that action smaller if necessary','Set a five-minute timer','Start','After five minutes: continue, take a planned break, or schedule the next action'] }
 };
 
@@ -63,12 +61,12 @@ const business = {
 
 const weeklyGroups = {
   CALENDAR:["Check next week's appointments",'Check work/night shifts','Check GP/mental-health appointments','Check other commitments'],
-  HEALTH:['Schedule STIFF','Schedule meditation','Review sleep','Check treatment/grooming supplies','Check minoxidil/dermaroller schedule'],
+  HEALTH:['Schedule meditation','Review sleep','Check treatment/grooming supplies','Check minoxidil/dermaroller schedule'],
   'EDEN GMC':['Review enquiries','Review outstanding quotes','Review booked jobs','Schedule weekend jobs','Check equipment/materials','Review income/expenses'],
   'LIFE ADMIN':['Universal Credit','Bills','Letters','Forms','Emails','Laundry','Room/home tasks']
 };
 
-const rules = ['Bella’s walks, food and fresh water are non-negotiable. Move them when work finishes late; never delete or rush them.','Keep the scheduled push-ups and full STIFF session on gym workdays.','Do not schedule Eden GMC growth blocks on workdays.','Gym sessions remain 90 minutes. If an unusually late early shift makes the gym incompatible with essential sleep, move the gym to another suitable day.','Do not catch up on missed optional tasks after a late finish.','Calendar = things happening at a specific time.','This app = what I am doing today.','Capture list = things I remember during the day.','Journal = thoughts and reflection.','Only three priorities per day.','Break vague projects into physical actions.','Use timers to make time visible.','Schedule free time instead of trying to eliminate it.','Do not redesign the system when I have one bad day.','Resume; do not restart.','Done is better than perfect.',"If overwhelmed, use RESET — DON'T THINK.",'If struggling badly, use MINIMUM DAY.'];
+const rules = ['Bella’s walks, food and fresh water are non-negotiable. Move them when work finishes late; never delete or rush them.','Keep the scheduled push-ups on gym workdays.','Do not schedule Eden GMC growth blocks on workdays.','Gym sessions remain 90 minutes. If an unusually late early shift makes the gym incompatible with essential sleep, move the gym to another suitable day.','Do not catch up on missed optional tasks after a late finish.','Calendar = things happening at a specific time.','This app = what I am doing today.','Capture list = things I remember during the day.','Journal = thoughts and reflection.','Only three priorities per day.','Break vague projects into physical actions.','Use timers to make time visible.','Schedule free time instead of trying to eliminate it.','Do not redesign the system when I have one bad day.','Resume; do not restart.','Done is better than perfect.',"If overwhelmed, use RESET — DON'T THINK.",'If struggling badly, use MINIMUM DAY.'];
 const journalPrompts = ['What did I actually accomplish today?','What did I avoid?','What got in the way?','What did I learn?',"What is tomorrow's MUST?","What is tomorrow's first physical action?"];
 
 let state = loadState();
@@ -147,8 +145,8 @@ function renderSleepWarning(d){
   const warning=document.querySelector('#sleepWarning'),expected=d.mode==='normal'?'18:00':'10:00',finish=d.actualFinish||expected;
   let late=toMinutes(finish)-toMinutes(expected);if(d.mode==='night'&&late<-8*60)late+=1440;
   warning.hidden=false;
-  const baseline='Safety check: the complete routine currently leaves about 4 hours 55 minutes between scheduled sleep and wake-up, before any late finish.';
-  if(late<=0){warning.textContent=`${baseline} Protecting adequate sleep may require moving a workout, STIFF or Eden GMC block to another day.`;return;}
+  const baseline='Safety check: the complete routine currently leaves about 5 hours 25 minutes between scheduled sleep and wake-up, before any late finish.';
+  if(late<=0){warning.textContent=`${baseline} Protecting adequate sleep may require moving a workout or optional task to another day.`;return;}
   warning.textContent=d.mode==='normal'
     ? `${baseline} Work also finished ${late} minutes late. Bella and essential food stay protected; move the gym if it cannot fit without further reducing sleep.`
     : `${baseline} Work also finished ${late} minutes late. Bella, food, hygiene and sleep move later. Do not catch up on optional tasks.`;
