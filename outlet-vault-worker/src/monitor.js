@@ -1,0 +1,1 @@
+import{runMonitor}from'./core.js';const result=await runMonitor();console.log(JSON.stringify(result));
