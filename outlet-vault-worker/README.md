@@ -1,14 +1,12 @@
-# Outlet Vault Worker
+# Outlet Vault Worker — Render
 
-Secure backend for The Outlet Vault.
+Node backend for The Outlet Vault.
 
-## Routes
-- GET /api/health
-- POST /api/analyse — image + lot-description product identification via Gemini
-- POST /api/monitor/run — authenticated monitor trigger (source adapters remain opt-in)
+Routes: GET /api/health, POST /api/analyse, POST /api/monitor/run.
 
-## Secrets
-Set GEMINI_API_KEY and ADMIN_TOKEN as Cloudflare Worker secrets. Never commit real values.
+Start command: node src/server.js
+Cron command: node src/monitor.js
 
-## Monitoring
-An hourly Cron Trigger calls the scheduled handler. Source-specific auction adapters must respect the source's terms, robots/access controls and rate limits. No automatic bidding is implemented.
+Required secret for AI: GEMINI_API_KEY. Optional authenticated manual-monitor secret: ADMIN_TOKEN. Do not commit either value.
+
+Auction source adapters remain deliberately disabled until each source's permitted access method is implemented. Automatic bidding is not implemented.
