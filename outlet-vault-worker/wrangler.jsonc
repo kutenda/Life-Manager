@@ -1,0 +1,1 @@
+{"$schema":"node_modules/wrangler/config-schema.json","name":"outlet-vault-worker","main":"src/index.js","compatibility_date":"2026-09-28","vars":{"ALLOWED_ORIGIN":"https://kutenda.github.io"},"triggers":{"crons":["0 * * * *"]}}
