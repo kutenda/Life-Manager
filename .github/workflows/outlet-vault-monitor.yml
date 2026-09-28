@@ -8,14 +8,14 @@ permissions:
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: feature/outlet-vault
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Run Outlet Vault monitor
-        working-directory: outlet-vault-worker
-        run: npm run monitor
+      - name: Run live Outlet Vault monitor
+        env:
+          OUTLET_VAULT_ADMIN_TOKEN: ${{ secrets.OUTLET_VAULT_ADMIN_TOKEN }}
+        run: |
+          test -n "$OUTLET_VAULT_ADMIN_TOKEN" || { echo "Missing OUTLET_VAULT_ADMIN_TOKEN"; exit 1; }
+          curl --fail-with-body --retry 2 --max-time 300 \
+            -X POST "https://outlet-vault-api.onrender.com/api/monitor/run" \
+            -H "Authorization: Bearer $OUTLET_VAULT_ADMIN_TOKEN" \
+            -H "Content-Type: application/json"
