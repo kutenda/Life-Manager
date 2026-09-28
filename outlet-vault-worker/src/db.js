@@ -29,6 +29,26 @@ CREATE TABLE IF NOT EXISTS learning_events (
  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 CREATE INDEX IF NOT EXISTS idx_learning_events_type_time ON learning_events(event_type,created_at DESC);
+CREATE TABLE IF NOT EXISTS autonomy_settings (
+ id TEXT PRIMARY KEY DEFAULT 'global', emergency_stop BOOLEAN NOT NULL DEFAULT TRUE,
+ mode TEXT NOT NULL DEFAULT 'shadow', max_item_spend NUMERIC NOT NULL DEFAULT 250,
+ max_daily_spend NUMERIC NOT NULL DEFAULT 500, max_weekly_spend NUMERIC NOT NULL DEFAULT 1500,
+ max_capital_exposure NUMERIC NOT NULL DEFAULT 2000, min_profit NUMERIC NOT NULL DEFAULT 100,
+ min_roi NUMERIC NOT NULL DEFAULT 40, min_confidence NUMERIC NOT NULL DEFAULT 85,
+ min_training_decisions INTEGER NOT NULL DEFAULT 50, updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+INSERT INTO autonomy_settings(id) VALUES('global') ON CONFLICT(id) DO NOTHING;
+CREATE TABLE IF NOT EXISTS spend_reservations (
+ id TEXT PRIMARY KEY, lot_id TEXT NOT NULL, amount NUMERIC NOT NULL, status TEXT NOT NULL DEFAULT 'reserved',
+ created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), expires_at TIMESTAMPTZ, released_at TIMESTAMPTZ
+);
+CREATE INDEX IF NOT EXISTS idx_spend_reservations_status_time ON spend_reservations(status,created_at DESC);
+CREATE TABLE IF NOT EXISTS autonomy_decisions (
+ id BIGSERIAL PRIMARY KEY, lot_id TEXT, allowed BOOLEAN NOT NULL, mode TEXT NOT NULL,
+ proposed_max NUMERIC, projected_landed NUMERIC, projected_profit NUMERIC, projected_roi NUMERIC,
+ confidence NUMERIC, reasons JSONB NOT NULL DEFAULT '[]'::jsonb, created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS idx_autonomy_decisions_time ON autonomy_decisions(created_at DESC);
 CREATE TABLE IF NOT EXISTS audit_log (
  id BIGSERIAL PRIMARY KEY, action TEXT NOT NULL, entity_type TEXT, entity_id TEXT, data JSONB NOT NULL DEFAULT '{}'::jsonb,
  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -47,3 +67,14 @@ export async function listBusinessRecords(type){if(!dbEnabled())return[];const p
 export async function appendLearningEvent(eventType,lotId,data={}){if(!dbEnabled())return{enabled:false};const p=getPool(),r=await p.query('INSERT INTO learning_events(event_type,lot_id,data) VALUES($1,$2,$3) RETURNING id,created_at',[eventType,lotId||null,JSON.stringify(data)]);return{enabled:true,...r.rows[0]}}
 export async function appendAudit(action,entityType,entityId,data={}){if(!dbEnabled())return{enabled:false};const p=getPool(),r=await p.query('INSERT INTO audit_log(action,entity_type,entity_id,data) VALUES($1,$2,$3,$4) RETURNING id,created_at',[action,entityType||null,entityId||null,JSON.stringify(data)]);return{enabled:true,...r.rows[0]}}
 export async function persistentState(){if(!dbEnabled())return null;const p=getPool(),records=await listBusinessRecords(),counts=await p.query(`SELECT (SELECT COUNT(*) FROM business_records)::int records,(SELECT COUNT(*) FROM learning_events)::int learning,(SELECT COUNT(*) FROM audit_log)::int audit`);return{records,counts:counts.rows[0]}}
+
+export async function getAutonomySettings(){if(!dbEnabled())return null;const p=getPool(),r=await p.query('SELECT id,emergency_stop AS "emergencyStop",mode,max_item_spend::float AS "maxItemSpend",max_daily_spend::float AS "maxDailySpend",max_weekly_spend::float AS "maxWeeklySpend",max_capital_exposure::float AS "maxCapitalExposure",min_profit::float AS "minProfit",min_roi::float AS "minRoi",min_confidence::float AS "minConfidence",min_training_decisions AS "minTrainingDecisions",updated_at AS "updatedAt" FROM autonomy_settings WHERE id=\'global\'');return r.rows[0]}
+export async function autonomyStats(){if(!dbEnabled())return null;const p=getPool(),r=await p.query(`SELECT
+COALESCE(SUM(amount) FILTER(WHERE status='reserved' AND created_at>=date_trunc('day',NOW())),0)::float daily,
+COALESCE(SUM(amount) FILTER(WHERE status='reserved' AND created_at>=date_trunc('week',NOW())),0)::float weekly,
+COALESCE(SUM(amount) FILTER(WHERE status='reserved'),0)::float exposure,
+(SELECT COUNT(*)::int FROM learning_events) training
+FROM spend_reservations`);return r.rows[0]}
+export async function recordAutonomyDecision(x){if(!dbEnabled())return{enabled:false};const p=getPool(),r=await p.query(`INSERT INTO autonomy_decisions(lot_id,allowed,mode,proposed_max,projected_landed,projected_profit,projected_roi,confidence,reasons) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id,created_at`,[x.lotId||null,!!x.allowed,x.mode||'shadow',x.proposedMax||0,x.projectedLanded||0,x.projectedProfit||0,x.projectedRoi||0,x.confidence||0,JSON.stringify(x.reasons||[])]);await appendAudit('autonomy_decision','lot',x.lotId||null,{decisionId:r.rows[0].id,allowed:!!x.allowed,mode:x.mode||'shadow',reasons:x.reasons||[]});return{enabled:true,...r.rows[0]}}
+export async function reserveSpend(id,lotId,amount){if(!dbEnabled())return{enabled:false};const p=getPool();await p.query(`INSERT INTO spend_reservations(id,lot_id,amount,status) VALUES($1,$2,$3,'reserved') ON CONFLICT(id) DO NOTHING`,[id,lotId,amount]);return{enabled:true,reserved:true}}
+export async function hasActiveLotReservation(lotId){if(!dbEnabled())return false;const p=getPool(),r=await p.query("SELECT 1 FROM spend_reservations WHERE lot_id=$1 AND status='reserved' LIMIT 1",[lotId]);return!!r.rows.length}
