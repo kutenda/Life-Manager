@@ -1,0 +1,1 @@
+{"name":"outlet-vault-worker","private":true,"type":"module","scripts":{"start":"node src/server.js","monitor":"node src/monitor.js"},"engines":{"node":">=20"}}
